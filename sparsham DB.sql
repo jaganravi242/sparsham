@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2021 at 08:05 AM
+-- Generation Time: Nov 24, 2021 at 08:00 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `sparsham`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blood_donation`
+--
+
+CREATE TABLE `blood_donation` (
+  `blood_donation_id` int(11) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `no_of_bottle` int(11) NOT NULL,
+  `blood_group` varchar(5) NOT NULL,
+  `description` varchar(50) NOT NULL,
+  `blood_donation_status` int(3) NOT NULL DEFAULT 0,
+  `donation_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `blood_donation`
+--
+
+INSERT INTO `blood_donation` (`blood_donation_id`, `email`, `no_of_bottle`, `blood_group`, `description`, `blood_donation_status`, `donation_date`) VALUES
+(1, 'aliyas123@gmail.com', 5, 'O+', 'jhghgsdh kjbsjkbns cnksbib', 1, '2021-11-24 18:09:04');
 
 -- --------------------------------------------------------
 
@@ -153,6 +176,12 @@ INSERT INTO `verification` (`verification_id`, `email`, `id_card`) VALUES
 --
 
 --
+-- Indexes for table `blood_donation`
+--
+ALTER TABLE `blood_donation`
+  ADD PRIMARY KEY (`blood_donation_id`);
+
+--
 -- Indexes for table `country`
 --
 ALTER TABLE `country`
@@ -191,6 +220,12 @@ ALTER TABLE `verification`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `blood_donation`
+--
+ALTER TABLE `blood_donation`
+  MODIFY `blood_donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `country`

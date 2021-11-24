@@ -1,24 +1,14 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <?php
+include("dbconn.php");
 session_start();
+
 ?>
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-<title>Glance Design Dashboard an Admin Panel Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-
-<!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <meta charset="utf-8">
+    <title></title>
+    <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 
 <!-- Custom CSS -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />
@@ -30,12 +20,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <!-- side nav css file -->
 <link href='css/SidebarNav.min.css' media='all' rel='stylesheet' type='text/css'/>
 <!-- //side nav css file -->
- 
- <!-- js-->
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/modernizr.custom.js"></script>
-
-<!--webfonts-->
 <link href="//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
 <!--//webfonts--> 
 
@@ -47,16 +31,34 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <script src="js/metisMenu.min.js"></script>
 <script src="js/custom.js"></script>
 <link href="css/custom.css" rel="stylesheet">
-<!--//Metis Menu -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+<script type="text/javascript">
+    $(document)
+  .ready(function () {
+    $('#table_id')
+      .DataTable();
+  });
+</script>
 <style>
 #chartdiv {
   width: 100%;
   height: 295px;
 }
 </style>
+<script type="text/javascript">
+ $(document).ready(function() {
+    $('#example').DataTable( {
+        "order": [[ 3, "desc" ]]
+    } );
+} );
+</script>
 <!--pie-chart --><!-- index page sales reviews visitors pie chart -->
 <script src="js/pie-chart.js" type="text/javascript"></script>
  <script type="text/javascript">
+
 
         $(document).ready(function () {
             $('#demo-pie-1').pieChart({
@@ -91,31 +93,13 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
            
         });
-
-    </script>
-<!-- //pie-chart --><!-- index page sales reviews visitors pie chart -->
-
-	<!-- requried-jsfiles-for owl -->
-					<link href="css/owl.carousel.css" rel="stylesheet">
-					<script src="js/owl.carousel.js"></script>
-						<script>
-							$(document).ready(function() {
-								$("#owl-demo").owlCarousel({
-									items : 3,
-									lazyLoad : true,
-									autoPlay : true,
-									pagination : true,
-									nav:true,
-								});
-							});
-						</script>
-					<!-- //requried-jsfiles-for owl -->
-</head> 
+        </script>
+</head>
 <body class="cbp-spmenu-push">
-	<div class="main-content">
-	<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
-		<!--left-fixed -navigation-->
-		<aside class="sidebar-left">
+    <div class="main-content">
+    <div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+        <!--left-fixed -navigation-->
+        <aside class="sidebar-left">
       <nav class="navbar navbar-inverse">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".collapse" aria-expanded="false">
@@ -132,190 +116,139 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
           <!-- /.navbar-collapse -->
       </nav>
     </aside>
-	</div>
-		<!--left-fixed -navigation-->
-		
-		<!-- header-starts -->
-		<?php
-		include("header.php");
-		?>
-		<!-- //header-ends -->
-		<!-- main content start-->
-		<div id="page-wrapper">
-            <?php
-            include("dbconn.php");
-            $sql="select * from login,registration,verification where login.usertype='student' and login.status=0 and login.email=registration.email and login.email=verification.email";
+    </div>
+        <!--left-fixed -navigation-->
+        
+        <!-- header-starts -->
+        <?php
+        include("header.php");
+        ?>
+        <!-- //header-ends -->
+        <!-- main content start-->
+        <div id="page-wrapper">
+
+
+
+    <table id="table_id" class="display">
+    <thead>
+        <tr>
+           <th>Donation ID</th>
+           <th>Name</th>
+           <th>Contact</th>
+
+      <th>Blood Group</th>
+      <th>Number of bottles</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th>Status</th>
+      
+        </tr>
+    </thead>
+    <tbody>
+         <?php
+            $email=$_SESSION["email"];
+            $sql="select * from blood_donation a,registration b where a.email=b.email order by a.donation_date desc";
             $res=mysqli_query($conn,$sql);
             if(mysqli_num_rows($res)>0){
                 while($r=mysqli_fetch_assoc($res)){
+                
             ?>
-                <div class="col-md-12 panel-grids">
-                        <div class="panel panel-primary"> <div class="panel-heading"> <h2 class="panel-title"><?php echo $r["name"]?></h2></div> 
-                    <div class="panel-body"> 
-                    Personal Details
-                    <table class="table">
-                            <thead>
-                                <tr>
-                                 
-                                  <th>Name</th>
-                                  <th>Email</th>
-                                  <th>Phone</th>
-                                  <th>Gender</th>
-                                  <th>Date of Birth</th>
-                                  <th>House</th>
-                                  <th>Place</th>
-                                  <th>District</th>
-                                  <th>State</th>
-                                  <th>Country</th>
-                                  <th>Pincode</th>
 
-                                  
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                <td>
-                                    <?php echo $r["name"]?>
-                                </td>
-                                <td>
-                                    <?php echo $r["email"]?>
-                                </td><td>
-                                    <?php echo $r["phone"]?>
-                                </td><td>
-                                    <?php echo $r["gender"]?>
-                                </td><td>
-                                    <?php echo $r["date_of_birth"]?>
-                                </td><td>
-                                    <?php echo $r["house"]?>
-                                </td>
-                                 </td><td>
-                                    <?php echo $r["place"]?>
-                                </td>
+           <tr>
+      <th scope="row"><?php echo $r['blood_donation_id']?></th>
+      <td><?php echo $r['name']?></td>
+      <td><?php echo $r['email']?><br>
+        <?php echo $r['phone']?><br>
 
+          
+      </td>
+      <td><?php echo $r['blood_group']?></td>
+      <td><?php echo $r['no_of_bottle']?></td>
+        <td><?php echo $r['description']?></td>
+        <td><?php echo $r['donation_date']?></td>
 
-                                <td>
+        <td>
+            <div id="<?php echo $r['blood_donation_id']?>">
+                <?php
+         if($r['blood_donation_status']==0)
+            echo "Request not accepted";
+        else if($r['blood_donation_status']==1)
+            echo "Request accepted";
+        else if($r['blood_donation_status']==2)
+            echo "Request rejected";
+        else if($r['blood_donation_status']==3)
+            echo "Request completed";
 
-                                    <?php
-                                     $d=$r["district"];
-                                     
-                                     $s="select district from district where district_id=$d";
-                        $res1=mysqli_query($conn,$s);
-                        $row=mysqli_fetch_assoc($res1);
-                        $c=$row["district"];
-                        echo $c;
+     ?>
+ </div>
+ <form>
+          <select class="form-control"  onchange="updatestatus(this.value,<?php echo $r['blood_donation_id']?>)">
 
-                                     ?>
-                                </td>
-                                 <td>
-                                   <?php
-                                     $d=$r["state"];
-                                     
-                                     $s="select state from state where state_id=$d";
-                        $res1=mysqli_query($conn,$s);
-                        $row=mysqli_fetch_assoc($res1);
-                        $c=$row["state"];
-                        echo $c;
+            <option value disabled selected> <?php
+            if($r['blood_donation_status']==0)
+            echo "Request not accepted";
+        else if($r['blood_donation_status']==1)
+            echo "Request accepted";
+        else if($r['blood_donation_status']==2)
+            echo "Request rejected";
+        else if($r['blood_donation_status']==3)
+            echo "Request completed";
 
-                                     ?>
-                                </td>
-                                <td>
-                                    <?php
-                                     $d=$r["country"];
-                                     
-                                     $s="select country from country where country_id=$d";
-                        $res1=mysqli_query($conn,$s);
-                        $row=mysqli_fetch_assoc($res1);
-                        $c=$row["country"];
-                        echo $c;
+            ?></option>
+            <option value="1">Request Accepted</option>
 
-                                     ?>
-                                </td><td>
-                                    <?php echo $r["pincode"]?>
-                                </td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
-                        Verification Details
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                  
-                                  <th>ID Card</th>
-                                  
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                 
-                                <!--  -->
-                                  <td><a href="../students/<?php echo $r['id_card']?>"><img src="../students/<?php echo $r['id_card']?>" width="250" height="280"></a></td>
-                                 
-                              </tr>
-                                
-                            </tbody>
-                        </table>
-                        <a href="approve.php?email='<?php echo $r['email']?>'"><button type="button" class="btn btn-success"> Approve</button></a>
-                        <div class="col-md-4 modal-grids">
-                        <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Reject</button>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="exampleModalLabel">Why you are rejecting <?php echo $r["name"]?></h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="rejectstudent.php" method="POST">
-                                            <div class="form-group">
-                                                <label for="recipient-name" class="control-label">Recipient:</label>
-                                                <input type="text" name="email" class="form-control" id="recipient-name" value="<?php echo $r["email"]?>" readonly>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="message-text" class="control-label">Message:</label>
-                                                <textarea class="form-control" name="content" id="message-text" required=""></textarea>
-                                            </div>
-                                                                                <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Send message</button>
-                                    </div>
-                                        </form>
-                                    </div>
+            <option value="2">Request Rejeceted</option>
+            <option value="3">Completed</option>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    </div> 
-                    </div>
-                    </div>
             
+
+
+              
+          </select>
+      </form>
+      
+
+</td>
+     
+
+
+    </tr>
+
+
+
             <?php
-
-            }
-           
-
-            }
-            
+        }
+    }
             ?>
-			
-			</div>
-        </div>
+        
 
-	<!--footer-->
-	
-    <!--//footer-->
-	</div>
-    
-		
-	<!-- new added graphs chart js-->
-	
-    <script src="js/Chart.bundle.js"></script>
+        
+    </tbody>
+</table>
+</div></div>
+<script type="text/javascript">
+      function updatestatus(status,id){
+    console.log(status)
+    console.log(id)
+    $.ajax({
+        url:"updatestatus.php",
+        method:"POST",
+        data:{
+            blood_donation_status:status,
+            blood_donation_id:id
+        },
+        success:function(data){
+            console.log(data)
+            $('#'+id).html(data);
+        }
+    })
+  }
+</script>
+
+<script src="js/Chart.bundle.js"></script>
     <script src="js/utils.js"></script>
-	
-	<script>
+    
+    <script>
         var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         var color = Chart.helpers.color;
         var barChartData = {
@@ -431,45 +364,45 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             window.myBar.update();
         });
     </script>
-	<!-- new added graphs chart js-->
-	
-	<!-- Classie --><!-- for toggle left push menu script -->
-		<script src="js/classie.js"></script>
-		<script>
-			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
-				showLeftPush = document.getElementById( 'showLeftPush' ),
-				body = document.body;
-				
-			showLeftPush.onclick = function() {
-				classie.toggle( this, 'active' );
-				classie.toggle( body, 'cbp-spmenu-push-toright' );
-				classie.toggle( menuLeft, 'cbp-spmenu-open' );
-				disableOther( 'showLeftPush' );
-			};
-			
+    <!-- new added graphs chart js-->
+    
+    <!-- Classie --><!-- for toggle left push menu script -->
+        <script src="js/classie.js"></script>
+        <script>
+            var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+                showLeftPush = document.getElementById( 'showLeftPush' ),
+                body = document.body;
+                
+            showLeftPush.onclick = function() {
+                classie.toggle( this, 'active' );
+                classie.toggle( body, 'cbp-spmenu-push-toright' );
+                classie.toggle( menuLeft, 'cbp-spmenu-open' );
+                disableOther( 'showLeftPush' );
+            };
+            
 
-			function disableOther( button ) {
-				if( button !== 'showLeftPush' ) {
-					classie.toggle( showLeftPush, 'disabled' );
-				}
-			}
-		</script>
-	<!-- //Classie --><!-- //for toggle left push menu script -->
-		
-	<!--scrolling js-->
-	<script src="js/jquery.nicescroll.js"></script>
-	<script src="js/scripts.js"></script>
-	<!--//scrolling js-->
-	
-	<!-- side nav js -->
-	<script src='js/SidebarNav.min.js' type='text/javascript'></script>
-	<script>
+            function disableOther( button ) {
+                if( button !== 'showLeftPush' ) {
+                    classie.toggle( showLeftPush, 'disabled' );
+                }
+            }
+        </script>
+    <!-- //Classie --><!-- //for toggle left push menu script -->
+        
+    <!--scrolling js-->
+    <script src="js/jquery.nicescroll.js"></script>
+    <script src="js/scripts.js"></script>
+    <!--//scrolling js-->
+    
+    <!-- side nav js -->
+    <script src='js/SidebarNav.min.js' type='text/javascript'></script>
+    <script>
       $('.sidebar-menu').SidebarNav()
     </script>
-	<!-- //side nav js -->
-	
-	<!-- for index page weekly sales java script -->
-	<script src="js/SimpleChart.js"></script>
+    <!-- //side nav js -->
+    
+    <!-- for index page weekly sales java script -->
+    <script src="js/SimpleChart.js"></script>
     <script>
         var graphdata1 = {
             linecolor: "#CCA300",
@@ -723,12 +656,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         });
 
     </script>
-	<!-- //for index page weekly sales java script -->
-	
-	
-	<!-- Bootstrap Core JavaScript -->
+    <!-- //for index page weekly sales java script -->
+    
+    
+    <!-- Bootstrap Core JavaScript -->
    <script src="js/bootstrap.js"> </script>
-	<!-- //Bootstrap Core JavaScript -->
-	
+    <!-- //Bootstrap Core JavaScript -->
 </body>
 </html>

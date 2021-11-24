@@ -28,7 +28,31 @@ include("header.php")
               }
               else{
               ?>
-              <h1 class="text-center">You are verified by Secretary</h1>
+              <!-- <h1 class="text-center">You are verified by Secretary</h1> -->
+              <div class="container">
+  <h1 class="text-center">Donation Request</h1>
+  <div class="col-md-4">
+    <a href="blooddonation.php">
+    <div class="card">
+            <img src="../images/blood donation.jpg" width="360" height="240">
+      <div class="card-title text-center"><h3>Blood Donation</h3></div>
+        </div>
+      </a>
+    </div>
+  <div class="col-md-4">
+    <div class="card">
+            <img src="../images/Food donation.jpg" width="360" height="240">
+      <div class="card-title text-center"><h3>Food Donation</h3></div>
+        </div>
+    </div>
+  <div class="col-md-4">
+    <div class="card">
+            <img src="../images/money donation.jpg" width="360" height="240">
+      <div class="card-title text-center"><h3>Money Donation</h3></div>
+        </div>
+    </div>
+</div>
+
              
               <?php
 
@@ -37,6 +61,6 @@ include("header.php")
               ?>
 </div>
 
-<?php
+<!-- <?php
 include("footer.php");
-?>
+?> -->
