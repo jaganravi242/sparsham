@@ -42,27 +42,49 @@ include("dbconn.php");
             $email=$_SESSION["email"];
             $sql="select * from blood_donation a,registration b where a.email=b.email and a.blood_donation_status=1 order by a.donation_date desc";
             $res=mysqli_query($conn,$sql);
+            $sql1="select blood_donation_id from blood_donation_list where email='$email'";
+            $res1=mysqli_query($conn,$sql1);
+            $a1 = array();
+            while($r1 = mysqli_fetch_assoc($res1))
+            {
+                $a1[] = $r1['blood_donation_id'];
+            }
             if(mysqli_num_rows($res)>0){
                 while($r=mysqli_fetch_assoc($res)){
-                
-            ?>
-
-           <tr>
-     
-      <td><?php echo $r['name']?></td>
-      <td><?php echo $r['email']?><br>
-        <?php echo $r['phone']?><br>  
-      </td>
-      <td><?php echo $r['blood_group']?></td>
-      <td><?php echo $r['no_of_bottle']-$r['no_of_donation']?></td>
-        <td><?php echo $r['description']?></td>
-        <td>
-        	<button class="btn btn-primary">Accept</button>
-        </td>
-    </tr>
-    </tbody>
+                if(in_array($r['blood_donation_id'],$a1)==false){
+                  ?>
+                  <tr>
+                  <td><?php echo $r['name']?></td>
+                  <td><?php echo $r['email']?><br>
+                  <?php echo $r['phone']?><br>  
+                  </td>
+                  <td><?php echo $r['blood_group']?></td>
+                  <td><?php echo $r['no_of_bottle']-$r['no_of_donation']?></td>
+                  <td><?php echo $r['description']?></td>
+                  <td>
+                    <form>
+                      <button class="btn btn-primary" value="<?php echo $r['blood_donation_id']?>" onclick="updatestatus(this.value)">Accept</button>
+                    </form>
+                  </td>
+              </tr>
+              <?php
+    }}}?>
+</tbody>
 </table>
 </div>
-<!-- <?php
-include("footer.php");
-?> -->
+<script type="text/javascript">
+      function updatestatus(id){
+    console.log(id)
+    $.ajax({
+        url:"blooddonationstatus.php",
+        method:"POST",
+        data:{
+            blood_donation_id:id
+        },
+        success:function(data){
+            console.log(data)
+            $('#'+id).html(data);
+        }
+    })
+  }
+</script>
