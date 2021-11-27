@@ -2,10 +2,10 @@
 session_start();
 include("dbconn.php");
 $email=$_SESSION["email"];
-$blood_group=$_POST["blood_group"];
-$no_of_bottles=round($_POST["no_of_bottles"]*.1)+$_POST["no_of_bottles"];
+$donation_name=$_POST["donation_name"];
+$requested_amount=$_POST["requested_amount"];
 $description=$_POST["description"];
-$sql="insert into blood_donation(email,no_of_bottle,no_of_donation,blood_group,description)values('$email',$no_of_bottles,0,'$blood_group','$description')";
+$sql="insert into money_donation(email,requested_amount,donation_name,description)values('$email',$requested_amount,'$donation_name','$description')";
 if(mysqli_query($conn,$sql)){
 	?>
      <script type="text/javascript">
@@ -16,6 +16,4 @@ if(mysqli_query($conn,$sql)){
 }
 else
 echo mysqli_error($conn);
-
-
 ?>

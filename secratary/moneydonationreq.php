@@ -132,23 +132,21 @@ session_start();
     <table id="table_id" class="display">
     <thead>
         <tr>
-           <th>Donation ID</th>
-           <th>Name</th>
-           <th>Contact</th>
-
-      <th>Blood Group</th>
-      <th>Number of bottles</th>
-      <th>Number of bottles collected</th>
-      <th>Description</th>
-      <th>Date</th>
-      <th>Status</th>
-      
+            <th>Donation ID</th>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Donation Name</th>
+            <th>Requested Amount</th>
+            <th>Collected Amount</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
          <?php
             $email=$_SESSION["email"];
-            $sql="select * from blood_donation a,registration b where a.email=b.email order by a.donation_date desc";
+            $sql="select * from money_donation a,registration b where a.email=b.email order by a.donation_date desc";
             $res=mysqli_query($conn,$sql);
             if(mysqli_num_rows($res)>0){
                 while($r=mysqli_fetch_assoc($res)){
@@ -156,44 +154,42 @@ session_start();
             ?>
 
            <tr>
-      <th scope="row"><?php echo $r['blood_donation_id']?></th>
+      <th scope="row"><?php echo $r['money_donation_id']?></th>
       <td><?php echo $r['name']?></td>
       <td><?php echo $r['email']?><br>
         <?php echo $r['phone']?><br>
-
-          
       </td>
-      <td><?php echo $r['blood_group']?></td>
-      <td><?php echo $r['no_of_bottle']?></td>
-      <td><?php echo $r['no_of_donation']?></td>
+      <td><?php echo $r['donation_name']?></td>
+      <td><?php echo $r['requested_amount']?></td>
+      <td><?php echo $r['collected_amount']?></td>
         <td><?php echo $r['description']?></td>
         <td><?php echo $r['donation_date']?></td>
 
         <td>
-            <div id="<?php echo $r['blood_donation_id']?>">
+            <div id="<?php echo $r['money_donation_id']?>">
                 <?php
-         if($r['blood_donation_status']==0)
+         if($r['money_donation_status']==0)
             echo "Request not accepted";
-        else if($r['blood_donation_status']==1)
+        else if($r['money_donation_status']==1)
             echo "Request accepted";
-        else if($r['blood_donation_status']==2)
+        else if($r['money_donation_status']==2)
             echo "Request rejected";
-        else if($r['blood_donation_status']==3)
+        else if($r['money_donation_status']==3)
             echo "Request completed";
 
      ?>
  </div>
  <form>
-          <select class="form-control"  onchange="updatestatus(this.value,<?php echo $r['blood_donation_id']?>)">
+          <select class="form-control"  onchange="updatestatus(this.value,<?php echo $r['money_donation_id']?>)">
 
             <option value disabled selected> <?php
-            if($r['blood_donation_status']==0)
+            if($r['money_donation_status']==0)
             echo "Request not accepted";
-        else if($r['blood_donation_status']==1)
+        else if($r['money_donation_status']==1)
             echo "Request accepted";
-        else if($r['blood_donation_status']==2)
+        else if($r['money_donation_status']==2)
             echo "Request rejected";
-        else if($r['blood_donation_status']==3)
+        else if($r['money_donation_status']==3)
             echo "Request completed";
 
             ?></option>
@@ -233,11 +229,11 @@ session_start();
     console.log(status)
     console.log(id)
     $.ajax({
-        url:"bloodstatuschange.php",
+        url:"moneystatuschange.php",
         method:"POST",
         data:{
-            blood_donation_status:status,
-            blood_donation_id:id
+            money_donation_status:status,
+            money_donation_id:id
         },
         success:function(data){
             console.log(data)
@@ -402,7 +398,6 @@ session_start();
       $('.sidebar-menu').SidebarNav()
     </script>
     <!-- //side nav js -->
-    
     <!-- for index page weekly sales java script -->
     <script src="js/SimpleChart.js"></script>
     <script>

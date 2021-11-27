@@ -27,8 +27,8 @@
                 </a>
                 <ul class="treeview-menu">
                   <li><a href="blooddonationreq.php"><i class="fa fa-angle-right"></i>Blood</a></li>
-                  <li><a href=""><i class="fa fa-angle-right"></i>Food</a></li>
-                  <li><a href=""><i class="fa fa-angle-right"></i>Money</a></li>
+                  <li><a href="fooddonationreq.php"><i class="fa fa-angle-right"></i>Food</a></li>
+                  <li><a href="moneydonationreq.php"><i class="fa fa-angle-right"></i>Money</a></li>
 
 
                   <!-- <li><a href="service.php"><i class="fa fa-angle-right"></i> Service Providers</a></li> -->

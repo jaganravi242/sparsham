@@ -51,38 +51,18 @@ include("dbconn.php");
      
       <td><?php echo $r['name']?></td>
       <td><?php echo $r['email']?><br>
-        <?php echo $r['phone']?><br>
-
-          
+        <?php echo $r['phone']?><br>  
       </td>
       <td><?php echo $r['blood_group']?></td>
-      <td><?php echo $r['no_of_bottle']?></td>
+      <td><?php echo $r['no_of_bottle']-$r['no_of_donation']?></td>
         <td><?php echo $r['description']?></td>
-       
-
         <td>
         	<button class="btn btn-primary">Accept</button>
         </td>
-
-     
-
-
     </tr>
-
-
-
-            <?php
-        }
-    }
-            ?>
-        
-
-        
     </tbody>
 </table>
 </div>
-
-
 <!-- <?php
 include("footer.php");
 ?> -->

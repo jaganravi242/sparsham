@@ -56,13 +56,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<div class="header-main">
 				<div class="logo">
-					<a href="index.html"><h1>Sparsham</h1></a>
+					<a href="index.php"><h1>Sparsham</h1></a>
 				</div>
 				<div class="head-right">	   		
 					<div class="top-nav">
 						<span class="menu"><img src="images/nav-icon.png" alt=""> </span>
 						<ul>
-							<li><a href="index.html"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+							<li><a href="index.php"><span class="glyphicon glyphicon-home"></span>Home</a></li>
 							<li><a href="about.html"><span class="glyphicon glyphicon-info-sign"></span>About</a></li>
 							<li>
 								<a href="registration.php"><span class="glyphicon glyphicon-user"></span>Register</a>
