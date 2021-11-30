@@ -82,7 +82,7 @@ include("dbconn.php");
         },
         success:function(data){
             console.log(data)
-            $('#'+id).html(data);
+           /// $('#'+id).html(data);
         }
     })
     location.reload();

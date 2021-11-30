@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2021 at 08:00 PM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- Generation Time: Nov 30, 2021 at 02:22 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,6 +31,7 @@ CREATE TABLE `blood_donation` (
   `blood_donation_id` int(11) NOT NULL,
   `email` varchar(30) NOT NULL,
   `no_of_bottle` int(11) NOT NULL,
+  `no_of_donation` int(11) NOT NULL,
   `blood_group` varchar(5) NOT NULL,
   `description` varchar(50) NOT NULL,
   `blood_donation_status` int(3) NOT NULL DEFAULT 0,
@@ -41,8 +42,22 @@ CREATE TABLE `blood_donation` (
 -- Dumping data for table `blood_donation`
 --
 
-INSERT INTO `blood_donation` (`blood_donation_id`, `email`, `no_of_bottle`, `blood_group`, `description`, `blood_donation_status`, `donation_date`) VALUES
-(1, 'aliyas123@gmail.com', 5, 'O+', 'jhghgsdh kjbsjkbns cnksbib', 1, '2021-11-24 18:09:04');
+INSERT INTO `blood_donation` (`blood_donation_id`, `email`, `no_of_bottle`, `no_of_donation`, `blood_group`, `description`, `blood_donation_status`, `donation_date`) VALUES
+(1, 'aliyas123@gmail.com', 5, 0, 'O+', 'jhghgsdh kjbsjkbns cnksbib', 1, '2021-11-24 18:09:04'),
+(2, 'public@mail.com', 20, 0, 'O-ve', 'blood donation', 1, '2021-11-27 12:18:25'),
+(3, 'public@mail.com', 31, 0, 'O-ve', 'blood donation', 2, '2021-11-27 12:29:05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blood_donation_list`
+--
+
+CREATE TABLE `blood_donation_list` (
+  `donation_id` int(11) NOT NULL,
+  `blood_donation_id` int(11) NOT NULL,
+  `email` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -84,6 +99,49 @@ INSERT INTO `district` (`district_id`, `state_id`, `district`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `food_donation`
+--
+
+CREATE TABLE `food_donation` (
+  `food_donation_id` int(11) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `no_of_packets` int(11) NOT NULL,
+  `no_of_donations` int(11) NOT NULL,
+  `donation_name` varchar(20) NOT NULL,
+  `description` varchar(50) NOT NULL,
+  `food_donation_status` int(3) NOT NULL DEFAULT 0,
+  `donation_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `food_donation`
+--
+
+INSERT INTO `food_donation` (`food_donation_id`, `email`, `no_of_packets`, `no_of_donations`, `donation_name`, `description`, `food_donation_status`, `donation_date`) VALUES
+(1, 'public@mail.com', 55, 0, 'donation 1', 'food donation', 1, '2021-11-27 12:52:49');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `food_donation_list`
+--
+
+CREATE TABLE `food_donation_list` (
+  `donation_id` int(11) NOT NULL,
+  `food_donation_id` int(11) NOT NULL,
+  `email` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `food_donation_list`
+--
+
+INSERT INTO `food_donation_list` (`donation_id`, `food_donation_id`, `email`) VALUES
+(16, 1, 'jaganravi242@gmail.com');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `login`
 --
 
@@ -101,7 +159,35 @@ INSERT INTO `login` (`email`, `usertype`, `status`) VALUES
 ('admin123@gmail.com', 'admin', 1),
 ('aliyas123@gmail.com', 'public', 0),
 ('harsha@gmail.com', 'secratary', 0),
-('jishnugopalan2000@gmail.com', 'student', 1);
+('jaganravi012@gmail.com', 'secratary', 0),
+('jaganravi242@gmail.com', 'student', 1),
+('jishnugopalan2000@gmail.com', 'student', 1),
+('public@mail.com', 'public', 0),
+('secratery123@mail.com', 'secratary', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `money_donation`
+--
+
+CREATE TABLE `money_donation` (
+  `money_donation_id` int(11) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `requested_amount` int(11) NOT NULL,
+  `collected_amount` int(11) NOT NULL DEFAULT 0,
+  `donation_name` varchar(20) NOT NULL,
+  `description` varchar(50) NOT NULL,
+  `money_donation_status` int(3) NOT NULL DEFAULT 0,
+  `donation_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `money_donation`
+--
+
+INSERT INTO `money_donation` (`money_donation_id`, `email`, `requested_amount`, `collected_amount`, `donation_name`, `description`, `money_donation_status`, `donation_date`) VALUES
+(1, 'public@mail.com', 1000, 0, 'donation 1', 'money donation', 1, '2021-11-27 13:28:23');
 
 -- --------------------------------------------------------
 
@@ -131,7 +217,12 @@ CREATE TABLE `registration` (
 INSERT INTO `registration` (`name`, `email`, `phone`, `gender`, `date_of_birth`, `house`, `place`, `country`, `state`, `district`, `pincode`, `profile_pic`) VALUES
 ('Aliys', 'aliyas123@gmail.com', 9778146653, '', '', '', '', 0, 0, 0, 0, '../images/avathar.jpg'),
 ('Harsha', 'harsha@gmail.com', 7994245510, '', '', '', '', 0, 0, 0, 0, '../images/avathar.jpg'),
-('Jishnu Gopalan', 'jishnugopalan2000@gmail.com', 7994245510, 'Male', '1999-03-11', 'dgffg', 'sdfsdf', 1, 1, 1, 686691, '../images/avathar.jpg');
+('Jagan Ravi', 'jaganravi012@gmail.com', 8089355672, '', '', '', '', 0, 0, 0, 0, '../images/avathar.jpg'),
+('Jagan Ravi', 'jaganravi242@gmail.com', 8089355672, 'Male', '1999-01-12', 'Ottukunnel House', 'VELLATHOOVAL PO', 1, 1, 1, 685563, '../images/avathar.jpg'),
+('Jishnu Gopalan', 'jishnugopalan2000@gmail.com', 7994245510, 'Male', '1999-03-11', 'dgffg', 'sdfsdf', 1, 1, 1, 686691, '../images/avathar.jpg'),
+('werty', 'public@mail.com', 8089355672, '', '', '', '', 0, 0, 0, 0, '../images/avathar.jpg'),
+('secratery', 'secratery123@mail.com', 8089355672, '', '', '', '', 0, 0, 0, 0, '../images/avathar.jpg'),
+('secratery', 'secratery@mail.com', 123456789, '', '', '', '', 0, 0, 0, 0, '../images/avathar.jpg');
 
 -- --------------------------------------------------------
 
@@ -169,7 +260,8 @@ CREATE TABLE `verification` (
 --
 
 INSERT INTO `verification` (`verification_id`, `email`, `id_card`) VALUES
-(2, 'jishnugopalan2000@gmail.com', 'uploads/jishnu.jpg');
+(2, 'jishnugopalan2000@gmail.com', 'uploads/jishnu.jpg'),
+(3, 'jaganravi242@gmail.com', 'uploads/Controlflow.docx');
 
 --
 -- Indexes for dumped tables
@@ -180,6 +272,12 @@ INSERT INTO `verification` (`verification_id`, `email`, `id_card`) VALUES
 --
 ALTER TABLE `blood_donation`
   ADD PRIMARY KEY (`blood_donation_id`);
+
+--
+-- Indexes for table `blood_donation_list`
+--
+ALTER TABLE `blood_donation_list`
+  ADD PRIMARY KEY (`donation_id`);
 
 --
 -- Indexes for table `country`
@@ -194,10 +292,28 @@ ALTER TABLE `district`
   ADD PRIMARY KEY (`district_id`);
 
 --
+-- Indexes for table `food_donation`
+--
+ALTER TABLE `food_donation`
+  ADD PRIMARY KEY (`food_donation_id`);
+
+--
+-- Indexes for table `food_donation_list`
+--
+ALTER TABLE `food_donation_list`
+  ADD PRIMARY KEY (`donation_id`);
+
+--
 -- Indexes for table `login`
 --
 ALTER TABLE `login`
   ADD PRIMARY KEY (`email`);
+
+--
+-- Indexes for table `money_donation`
+--
+ALTER TABLE `money_donation`
+  ADD PRIMARY KEY (`money_donation_id`);
 
 --
 -- Indexes for table `registration`
@@ -225,7 +341,13 @@ ALTER TABLE `verification`
 -- AUTO_INCREMENT for table `blood_donation`
 --
 ALTER TABLE `blood_donation`
-  MODIFY `blood_donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `blood_donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `blood_donation_list`
+--
+ALTER TABLE `blood_donation_list`
+  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `country`
@@ -240,6 +362,24 @@ ALTER TABLE `district`
   MODIFY `district_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `food_donation`
+--
+ALTER TABLE `food_donation`
+  MODIFY `food_donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `food_donation_list`
+--
+ALTER TABLE `food_donation_list`
+  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `money_donation`
+--
+ALTER TABLE `money_donation`
+  MODIFY `money_donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `state`
 --
 ALTER TABLE `state`
@@ -249,7 +389,7 @@ ALTER TABLE `state`
 -- AUTO_INCREMENT for table `verification`
 --
 ALTER TABLE `verification`
-  MODIFY `verification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `verification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
