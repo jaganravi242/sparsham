@@ -38,6 +38,8 @@ include("header.php")
       <div class="card-title text-center"><h3>Blood Donation</h3></div>
         </div>
       </a>
+      <a href="acceptedblooddonation.php">
+              <div class="text-center"><h3>Accepted Donation</h3></div></a>
     </div>
   <div class="col-md-4">
   <a href="fooddonation.php">
@@ -46,13 +48,18 @@ include("header.php")
       <div class="card-title text-center"><h3>Food Donation</h3></div>
         </div>
               </a>
+              <a href="acceptedfooddonation.php">
+              <div class="text-center"><h3>Accepted Donation</h3></div></a>
     </div>
   <div class="col-md-4">
+  <a href="moneydonation.php">
     <div class="card">
             <img src="../images/money donation.jpg" width="360" height="240">
       <div class="card-title text-center"><h3>Money Donation</h3></div>
         </div>
-    </div>
+    </div></a>
+    <a href="acceptedmoneydonation.php">
+              <div class="text-center"><h3>Accepted Donation</h3></div></a>
 </div>
 
              

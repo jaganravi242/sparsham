@@ -40,7 +40,7 @@ include("dbconn.php");
     <tbody>
          <?php
             $email=$_SESSION["email"];
-            $sql="select * from blood_donation a,registration b where a.email=b.email and a.blood_donation_status=1 and a.blood_donation_id not in(select blood_donation_id from blood_donation_list WHERE email='$email')order by a.donation_date desc";
+            $sql="select * from blood_donation a,registration b where a.email=b.email and a.blood_donation_id in(select blood_donation_id from blood_donation_list WHERE email='$email')order by a.donation_date desc";
             $res=mysqli_query($conn,$sql);
             if(mysqli_num_rows($res)>0){
                 while($r=mysqli_fetch_assoc($res)){
@@ -54,9 +54,7 @@ include("dbconn.php");
                   <td><?php echo $r['no_of_bottle']-$r['no_of_donation']?></td>
                   <td><?php echo $r['description']?></td>
                   <td>
-                    <form>
-                      <button class="btn btn-primary" value="<?php echo $r['blood_donation_id']?>" onclick="updatestatus(this.value)">Accept</button>
-                    </form>
+                    Accepted
                   </td>
               </tr>
               <?php
@@ -69,15 +67,6 @@ include("dbconn.php");
     }?>
 </tbody>
 </table>
-<?php
-// $sql3="select no_of_donation,no_of_bottle from blood_donation where blood_donation_id=1";
-// $res1=mysqli_query($conn,$sql3);
-// $r1=mysqli_fetch_assoc($res1);
-// echo $r1['no_of_donation'];
-// echo $r1['no_of_bottle'];
-// $sql4="update blood_donation set no_of_donation=5, blood_donation_status=3 where blood_donation_id=1";
-// mysqli_query($conn,$sql4);
-?>
 </div>
 
 <script type="text/javascript">
