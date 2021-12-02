@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2021 at 02:22 PM
+-- Generation Time: Dec 02, 2021 at 11:24 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -43,8 +43,8 @@ CREATE TABLE `blood_donation` (
 --
 
 INSERT INTO `blood_donation` (`blood_donation_id`, `email`, `no_of_bottle`, `no_of_donation`, `blood_group`, `description`, `blood_donation_status`, `donation_date`) VALUES
-(1, 'aliyas123@gmail.com', 5, 0, 'O+', 'jhghgsdh kjbsjkbns cnksbib', 1, '2021-11-24 18:09:04'),
-(2, 'public@mail.com', 20, 0, 'O-ve', 'blood donation', 1, '2021-11-27 12:18:25'),
+(1, 'aliyas123@gmail.com', 5, 5, 'O+', 'jhghgsdh kjbsjkbns cnksbib', 3, '2021-11-24 18:09:04'),
+(2, 'public@mail.com', 20, 4, 'O-ve', 'blood donation', 1, '2021-11-27 12:18:25'),
 (3, 'public@mail.com', 31, 0, 'O-ve', 'blood donation', 2, '2021-11-27 12:29:05');
 
 -- --------------------------------------------------------
@@ -58,6 +58,14 @@ CREATE TABLE `blood_donation_list` (
   `blood_donation_id` int(11) NOT NULL,
   `email` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `blood_donation_list`
+--
+
+INSERT INTO `blood_donation_list` (`donation_id`, `blood_donation_id`, `email`) VALUES
+(47, 1, 'jaganravi242@gmail.com'),
+(48, 2, 'jaganravi242@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -118,7 +126,7 @@ CREATE TABLE `food_donation` (
 --
 
 INSERT INTO `food_donation` (`food_donation_id`, `email`, `no_of_packets`, `no_of_donations`, `donation_name`, `description`, `food_donation_status`, `donation_date`) VALUES
-(1, 'public@mail.com', 55, 0, 'donation 1', 'food donation', 1, '2021-11-27 12:52:49');
+(1, 'public@mail.com', 55, 55, 'donation 1', 'food donation', 3, '2021-11-27 12:52:49');
 
 -- --------------------------------------------------------
 
@@ -137,7 +145,7 @@ CREATE TABLE `food_donation_list` (
 --
 
 INSERT INTO `food_donation_list` (`donation_id`, `food_donation_id`, `email`) VALUES
-(16, 1, 'jaganravi242@gmail.com');
+(18, 1, 'jaganravi242@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -188,6 +196,26 @@ CREATE TABLE `money_donation` (
 
 INSERT INTO `money_donation` (`money_donation_id`, `email`, `requested_amount`, `collected_amount`, `donation_name`, `description`, `money_donation_status`, `donation_date`) VALUES
 (1, 'public@mail.com', 1000, 0, 'donation 1', 'money donation', 1, '2021-11-27 13:28:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `money_donation_list`
+--
+
+CREATE TABLE `money_donation_list` (
+  `donation_id` int(11) NOT NULL,
+  `money_donation_id` int(11) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `amount` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `money_donation_list`
+--
+
+INSERT INTO `money_donation_list` (`donation_id`, `money_donation_id`, `email`, `amount`) VALUES
+(1, 1, 'jaganravi242@gmail.com', 1000);
 
 -- --------------------------------------------------------
 
@@ -316,6 +344,12 @@ ALTER TABLE `money_donation`
   ADD PRIMARY KEY (`money_donation_id`);
 
 --
+-- Indexes for table `money_donation_list`
+--
+ALTER TABLE `money_donation_list`
+  ADD PRIMARY KEY (`donation_id`);
+
+--
 -- Indexes for table `registration`
 --
 ALTER TABLE `registration`
@@ -347,7 +381,7 @@ ALTER TABLE `blood_donation`
 -- AUTO_INCREMENT for table `blood_donation_list`
 --
 ALTER TABLE `blood_donation_list`
-  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `country`
@@ -371,13 +405,19 @@ ALTER TABLE `food_donation`
 -- AUTO_INCREMENT for table `food_donation_list`
 --
 ALTER TABLE `food_donation_list`
-  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `money_donation`
 --
 ALTER TABLE `money_donation`
   MODIFY `money_donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `money_donation_list`
+--
+ALTER TABLE `money_donation_list`
+  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `state`

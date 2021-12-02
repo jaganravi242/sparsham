@@ -131,21 +131,24 @@ session_start();
 
     <table id="table_id" class="display">
     <thead>
-    <tr>
-    <th>Name</th>
-    <th>Contact</th>
-    <th>Gender</th>
-    <th>Date of Birth</th>
-    <th>Address</th>
-    <th>District</th>
-    <th>Pincode</th>
-    </tr>
+        <tr>
+           <th>Donation ID</th>
+           <th>Name</th>
+           <th>Contact</th>
+
+      <th>Donation Name</th>
+      <th>Number of Packets</th>
+      <th>Number of Packets collected</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th>Status</th>
+      
+        </tr>
     </thead>
     <tbody>
          <?php
-            $id=(int)$_GET['id'];
-            ?><h2>Blood Donation ID:<?php echo $id;?></h2><?php
-            $sql="select * from registration where email in(select email from blood_donation_list where blood_donation_id=$id);            ";
+            $email=$_SESSION["email"];
+            $sql="select * from food_donation a,registration b where a.email=b.email order by a.donation_date desc";
             $res=mysqli_query($conn,$sql);
             if(mysqli_num_rows($res)>0){
                 while($r=mysqli_fetch_assoc($res)){
@@ -153,17 +156,22 @@ session_start();
             ?>
 
            <tr>
-      <th scope="row"><?php echo $r['name']?></th>
+      <th scope="row"><?php echo $r['food_donation_id']?></th>
+      <td><?php echo $r['name']?></td>
       <td><?php echo $r['email']?><br>
-        <?php echo $r['phone']?></td>
-      <td><?php echo $r['gender']?></td>
-      <td><?php echo $r['date_of_birth']?></td>
-        <td><?php echo $r['house']?><br>
-        <?php echo $r['place']?></td>
-        <td><?php echo $r['district']?></td>
+        <?php echo $r['phone']?><br>
 
-        <td>
-        <?php echo $r['pincode']?></td>
+          
+      </td>
+      <td><?php echo $r['donation_name']?></td>
+      <td><?php echo $r['no_of_packets']?></td>
+      <td><?php echo $r['no_of_donations']?></td>
+        <td><?php echo $r['description']?></td>
+        <td><?php echo $r['donation_date']?></td>
+
+        <td><a href="fooddonationlistview.php?id=<?php echo $r['food_donation_id']?>">
+    <button class="btn btn-primary">View List</button></a>
+</td>
      
 
 
@@ -181,7 +189,6 @@ session_start();
     </tbody>
 </table>
 </div></div>
-
 <script src="js/Chart.bundle.js"></script>
     <script src="js/utils.js"></script>
     

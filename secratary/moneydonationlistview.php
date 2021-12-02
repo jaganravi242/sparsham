@@ -134,6 +134,7 @@ session_start();
     <tr>
     <th>Name</th>
     <th>Contact</th>
+    <th>Amount Donated</th>
     <th>Gender</th>
     <th>Date of Birth</th>
     <th>Address</th>
@@ -144,8 +145,8 @@ session_start();
     <tbody>
          <?php
             $id=(int)$_GET['id'];
-            ?><h2>Blood Donation ID:<?php echo $id;?></h2><?php
-            $sql="select * from registration where email in(select email from blood_donation_list where blood_donation_id=$id);            ";
+            ?><h2>Money Donation ID:<?php echo $id;?></h2><?php
+            $sql="SELECT * FROM registration INNER JOIN money_donation_list ON registration.email=money_donation_list.email WHERE money_donation_list.money_donation_id=$id";
             $res=mysqli_query($conn,$sql);
             if(mysqli_num_rows($res)>0){
                 while($r=mysqli_fetch_assoc($res)){
@@ -156,6 +157,7 @@ session_start();
       <th scope="row"><?php echo $r['name']?></th>
       <td><?php echo $r['email']?><br>
         <?php echo $r['phone']?></td>
+        <td><?php echo $r['amount']?></td>
       <td><?php echo $r['gender']?></td>
       <td><?php echo $r['date_of_birth']?></td>
         <td><?php echo $r['house']?><br>

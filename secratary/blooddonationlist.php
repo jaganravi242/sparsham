@@ -169,10 +169,8 @@ session_start();
         <td><?php echo $r['description']?></td>
         <td><?php echo $r['donation_date']?></td>
 
-        <td>
-        <form>
-                      <button class="btn btn-primary" value="<?php echo $r['blood_donation_id']?>" onclick="pageForward(this.value)">View List</button>
-                    </form>
+        <td><a href="blooddonationlistview.php?id=<?php echo $r['blood_donation_id']?>">
+    <button class="btn btn-primary">View List</button></a>
 </td>
      
 
@@ -191,19 +189,6 @@ session_start();
     </tbody>
 </table>
 </div></div>
-<script type="text/javascript">
-      function pageForward(id){
-    console.log(id)
-    $.ajax({
-        url:"blooddonationlistview.php",
-        method:"POST",
-        data:{
-            blood_donation_id:id
-        }
-    })
-  }
-</script>
-
 <script src="js/Chart.bundle.js"></script>
     <script src="js/utils.js"></script>
     

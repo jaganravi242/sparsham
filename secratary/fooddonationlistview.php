@@ -144,8 +144,8 @@ session_start();
     <tbody>
          <?php
             $id=(int)$_GET['id'];
-            ?><h2>Blood Donation ID:<?php echo $id;?></h2><?php
-            $sql="select * from registration where email in(select email from blood_donation_list where blood_donation_id=$id);            ";
+            ?><h2>Food Donation ID:<?php echo $id;?></h2><?php
+            $sql="select * from registration where email in(select email from food_donation_list where food_donation_id=$id);            ";
             $res=mysqli_query($conn,$sql);
             if(mysqli_num_rows($res)>0){
                 while($r=mysqli_fetch_assoc($res)){
