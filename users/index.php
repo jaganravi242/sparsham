@@ -1,7 +1,9 @@
 <?php
 session_start();
-include("header.php")
+include("header.php");
+
 ?>
+
 <div class="container">
 	<h1 class="text-center">Send Donation Request</h1>
 	<div class="col-md-4">

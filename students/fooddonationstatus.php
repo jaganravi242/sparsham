@@ -2,7 +2,7 @@
 include("dbconn.php");
 session_start();
 $email=$_SESSION["email"];
-$food_donation_id=$_POST["food_donation_id"];
+$food_donation_id=$_GET["food_donation_id"];
 $sql1="insert into food_donation_list (food_donation_id,email) VALUES ($food_donation_id,'$email')";
 $sql2="select * from food_donation_list where food_donation_id=$food_donation_id and email='$email'";
 $sql3="select no_of_donations,no_of_packets,food_donation_status from food_donation where food_donation_id=$food_donation_id";
@@ -32,7 +32,7 @@ else if(mysqli_query($conn,$sql1)){
 	?>
      <script type="text/javascript">
      	alert("Sucessfully Registered");
-     	window.location.replace('index.php')
+     	window.location.replace('fooddonation.php')
      </script>
 	<?php
 }
