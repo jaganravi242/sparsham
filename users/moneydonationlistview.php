@@ -32,7 +32,6 @@ include("dbconn.php");
     <th>Gender</th>
     <th>Date of Birth</th>
     <th>Address</th>
-    <th>District</th>
     <th>Pincode</th>
     </tr>
     </thead>
@@ -53,8 +52,6 @@ include("dbconn.php");
       <td><?php echo $r['date_of_birth']?></td>
         <td><?php echo $r['house']?><br>
         <?php echo $r['place']?></td>
-        <td><?php echo $r['district']?></td>
-
         <td>
         <?php echo $r['pincode']?></td>
      
