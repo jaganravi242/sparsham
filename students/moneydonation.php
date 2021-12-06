@@ -23,7 +23,7 @@ include("dbconn.php");
 </script>
 <div class="container">
 	<table id="table_id" class="display">
-		<h1 class="text-center">money Donations</h1>
+		<h1 class="text-center">Money Donations</h1>
     <thead>
         <tr>
            
@@ -33,6 +33,7 @@ include("dbconn.php");
       <th>Donation Name</th>
       <th>Amount Required</th>
       <th>Description</th>
+      <th>Donation</th>
            <th>Status</th>
       
         </tr>
@@ -54,8 +55,11 @@ include("dbconn.php");
                   <td><?php echo $r['requested_amount']-$r['collected_amount']?></td>
                   <td><?php echo $r['description']?></td>
                   <td>
-                    <form>
-                      <button class="btn btn-primary" value="<?php echo $r['money_donation_id']?>" onclick="">Accept</button>
+                  <form action="paydonation.php" method="get">
+                    <input type="number" name="donation_amount">
+                </td>
+                  <td>
+                      <button type="submit" name="money_donation_id"class="btn btn-primary" value="<?php echo $r['money_donation_id']?>" onclick="">Accept</button>
                     </form>
                   </td>
               </tr>
