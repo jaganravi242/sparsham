@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2021 at 11:24 AM
+-- Generation Time: Dec 07, 2021 at 08:54 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -44,7 +44,7 @@ CREATE TABLE `blood_donation` (
 
 INSERT INTO `blood_donation` (`blood_donation_id`, `email`, `no_of_bottle`, `no_of_donation`, `blood_group`, `description`, `blood_donation_status`, `donation_date`) VALUES
 (1, 'aliyas123@gmail.com', 5, 5, 'O+', 'jhghgsdh kjbsjkbns cnksbib', 3, '2021-11-24 18:09:04'),
-(2, 'public@mail.com', 20, 4, 'O-ve', 'blood donation', 1, '2021-11-27 12:18:25'),
+(2, 'public@mail.com', 20, 6, 'O-ve', 'blood donation', 1, '2021-11-27 12:18:25'),
 (3, 'public@mail.com', 31, 0, 'O-ve', 'blood donation', 2, '2021-11-27 12:29:05');
 
 -- --------------------------------------------------------
@@ -64,8 +64,30 @@ CREATE TABLE `blood_donation_list` (
 --
 
 INSERT INTO `blood_donation_list` (`donation_id`, `blood_donation_id`, `email`) VALUES
-(47, 1, 'jaganravi242@gmail.com'),
-(48, 2, 'jaganravi242@gmail.com');
+(50, 2, 'jaganravi242@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chat`
+--
+
+CREATE TABLE `chat` (
+  `chat_id` int(11) NOT NULL,
+  `sender_email` varchar(50) NOT NULL,
+  `reciever_email` varchar(50) NOT NULL,
+  `message` text NOT NULL,
+  `chat_time` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `chat`
+--
+
+INSERT INTO `chat` (`chat_id`, `sender_email`, `reciever_email`, `message`, `chat_time`) VALUES
+(1, 'public@mail.com', 'jaganravi012@gmail.com', 'hi', '2021-12-07 18:59:52'),
+(2, 'public@mail.com', 'jaganravi012@gmail.com', 'hello', '2021-12-07 19:04:05'),
+(3, 'jaganravi012@gmail.com', 'public@mail.com', 'jhjhh', '2021-12-07 19:42:38');
 
 -- --------------------------------------------------------
 
@@ -145,7 +167,7 @@ CREATE TABLE `food_donation_list` (
 --
 
 INSERT INTO `food_donation_list` (`donation_id`, `food_donation_id`, `email`) VALUES
-(18, 1, 'jaganravi242@gmail.com');
+(19, 1, 'jaganravi242@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -166,12 +188,10 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`email`, `usertype`, `status`) VALUES
 ('admin123@gmail.com', 'admin', 1),
 ('aliyas123@gmail.com', 'public', 0),
-('harsha@gmail.com', 'secratary', 0),
 ('jaganravi012@gmail.com', 'secratary', 0),
 ('jaganravi242@gmail.com', 'student', 1),
 ('jishnugopalan2000@gmail.com', 'student', 1),
-('public@mail.com', 'public', 0),
-('secratery123@mail.com', 'secratary', 0);
+('public@mail.com', 'public', 0);
 
 -- --------------------------------------------------------
 
@@ -195,7 +215,7 @@ CREATE TABLE `money_donation` (
 --
 
 INSERT INTO `money_donation` (`money_donation_id`, `email`, `requested_amount`, `collected_amount`, `donation_name`, `description`, `money_donation_status`, `donation_date`) VALUES
-(1, 'public@mail.com', 1000, 0, 'donation 1', 'money donation', 1, '2021-11-27 13:28:23');
+(1, 'public@mail.com', 1000, 1500, 'donation 1', 'money donation', 3, '2021-11-27 13:28:23');
 
 -- --------------------------------------------------------
 
@@ -215,7 +235,7 @@ CREATE TABLE `money_donation_list` (
 --
 
 INSERT INTO `money_donation_list` (`donation_id`, `money_donation_id`, `email`, `amount`) VALUES
-(1, 1, 'jaganravi242@gmail.com', 1000);
+(5, 1, 'jaganravi242@gmail.com', 1500);
 
 -- --------------------------------------------------------
 
@@ -308,6 +328,12 @@ ALTER TABLE `blood_donation_list`
   ADD PRIMARY KEY (`donation_id`);
 
 --
+-- Indexes for table `chat`
+--
+ALTER TABLE `chat`
+  ADD PRIMARY KEY (`chat_id`);
+
+--
 -- Indexes for table `country`
 --
 ALTER TABLE `country`
@@ -381,7 +407,13 @@ ALTER TABLE `blood_donation`
 -- AUTO_INCREMENT for table `blood_donation_list`
 --
 ALTER TABLE `blood_donation_list`
-  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- AUTO_INCREMENT for table `chat`
+--
+ALTER TABLE `chat`
+  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `country`
@@ -405,7 +437,7 @@ ALTER TABLE `food_donation`
 -- AUTO_INCREMENT for table `food_donation_list`
 --
 ALTER TABLE `food_donation_list`
-  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `money_donation`
@@ -417,7 +449,7 @@ ALTER TABLE `money_donation`
 -- AUTO_INCREMENT for table `money_donation_list`
 --
 ALTER TABLE `money_donation_list`
-  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `state`

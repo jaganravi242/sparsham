@@ -49,7 +49,11 @@
                   <!-- <li><a href="service.php"><i class="fa fa-angle-right"></i> Service Providers</a></li> -->
                 </ul>
               </li>
-               
+              <li class="treeview">
+                <a href="chatlist.php">
+                <i class="fa fa-chat"></i> <span>Chat</span>
+                </a>
+              </li>
                <!-- <li class="treeview">
                 <a href="complaints.php">
                 <i class="fa fa-dashboard"></i> <span>Complaints</span>
