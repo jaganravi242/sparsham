@@ -7,7 +7,16 @@ include("header.php")
 	<form method="POST" action="blooddonationreq.php">
 		<div class="col-md-6">
 			<label>Blood Group</label>
-			<input type="text" name="blood_group" class="form-control" required="">
+			<select name="blood_group" class="form-control" required="">
+				<option>O+</option>
+				<option>A+</option>
+				<option>B+</option>
+				<option>AB+</option>
+				<option>O-</option>
+				<option>A-</option>
+				<option>B-</option>
+				<option>AB-</option>
+			</select>
 		</div>
 		<div class="col-md-6">
 			<label>Number of bottles</label>
@@ -15,7 +24,12 @@ include("header.php")
 		</div>
 		<div class="col-md-12">
 			<label>Small Description</label>
-			<input type="text" name="description" class="form-control" required="" style="height: 50px;">
+			<select  name="description" class="form-control" required="" >
+			<option>Within 24 Hour</option>
+			<option>Within 48 Hour</option>
+			<option>Within 3 Days</option>
+			<option>Morethan 3 Days</option>
+			</select>	
 		</div>
 		<div class="col-md-12 text-center">
 			

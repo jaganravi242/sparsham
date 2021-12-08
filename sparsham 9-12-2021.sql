@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2021 at 08:54 PM
+-- Generation Time: Dec 08, 2021 at 08:53 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -45,7 +45,9 @@ CREATE TABLE `blood_donation` (
 INSERT INTO `blood_donation` (`blood_donation_id`, `email`, `no_of_bottle`, `no_of_donation`, `blood_group`, `description`, `blood_donation_status`, `donation_date`) VALUES
 (1, 'aliyas123@gmail.com', 5, 5, 'O+', 'jhghgsdh kjbsjkbns cnksbib', 3, '2021-11-24 18:09:04'),
 (2, 'public@mail.com', 20, 6, 'O-ve', 'blood donation', 1, '2021-11-27 12:18:25'),
-(3, 'public@mail.com', 31, 0, 'O-ve', 'blood donation', 2, '2021-11-27 12:29:05');
+(3, 'public@mail.com', 31, 0, 'O-ve', 'blood donation', 2, '2021-11-27 12:29:05'),
+(4, 'public@mail.com', 13, 0, 'O-ve', 'blood donation', 0, '2021-12-08 16:41:58'),
+(5, 'public@mail.com', 4, 0, 'O+', 'Within 24 Hour', 0, '2021-12-08 18:13:28');
 
 -- --------------------------------------------------------
 
@@ -125,6 +127,30 @@ CREATE TABLE `district` (
 
 INSERT INTO `district` (`district_id`, `state_id`, `district`) VALUES
 (1, 1, 'Ernakulam');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `events`
+--
+
+CREATE TABLE `events` (
+  `event_id` int(11) NOT NULL,
+  `event_name` varchar(30) NOT NULL,
+  `event_discription` text NOT NULL,
+  `event_date` date NOT NULL,
+  `expected_students` int(11) NOT NULL,
+  `accepted_students` int(11) NOT NULL DEFAULT 0,
+  `event_status` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`event_id`, `event_name`, `event_discription`, `event_date`, `expected_students`, `accepted_students`, `event_status`) VALUES
+(1, 'wqee', 'we', '2021-12-09', 22, 0, 1),
+(2, 'wqee', 'we', '2021-12-09', 22, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -346,6 +372,12 @@ ALTER TABLE `district`
   ADD PRIMARY KEY (`district_id`);
 
 --
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`event_id`);
+
+--
 -- Indexes for table `food_donation`
 --
 ALTER TABLE `food_donation`
@@ -401,7 +433,7 @@ ALTER TABLE `verification`
 -- AUTO_INCREMENT for table `blood_donation`
 --
 ALTER TABLE `blood_donation`
-  MODIFY `blood_donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `blood_donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `blood_donation_list`
@@ -426,6 +458,12 @@ ALTER TABLE `country`
 --
 ALTER TABLE `district`
   MODIFY `district_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `food_donation`

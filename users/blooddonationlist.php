@@ -27,7 +27,7 @@ include("dbconn.php");
     <thead>
         <tr>
            
-        <th>Blood Donation Id</th>
+      <th>Blood Donation Id</th>
       <th>Blood Group</th>
       <th>Units Required</th>
       <th>Units Collected</th>

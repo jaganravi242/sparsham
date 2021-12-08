@@ -54,6 +54,16 @@
                 <i class="fa fa-chat"></i> <span>Chat</span>
                 </a>
               </li>
+              <li class="treeview">
+                <a href="createevent.php">
+                <i class="fa fa-chat"></i> <span>Create Event</span>
+                </a>
+              </li>
+              <li class="treeview">
+                <a href="eventlist.php">
+                <i class="fa fa-chat"></i> <span>Event List</span>
+                </a>
+              </li>
                <!-- <li class="treeview">
                 <a href="complaints.php">
                 <i class="fa fa-dashboard"></i> <span>Complaints</span>
