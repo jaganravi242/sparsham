@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2021 at 08:53 PM
+-- Generation Time: Dec 10, 2021 at 08:01 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -149,8 +149,28 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`event_id`, `event_name`, `event_discription`, `event_date`, `expected_students`, `accepted_students`, `event_status`) VALUES
-(1, 'wqee', 'we', '2021-12-09', 22, 0, 1),
-(2, 'wqee', 'we', '2021-12-09', 22, 0, 1);
+(1, 'wqee', 'we', '2021-12-09', 22, 1, 1),
+(2, 'wqee', 'we', '2021-12-09', 22, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event_list`
+--
+
+CREATE TABLE `event_list` (
+  `event_list_id` int(11) NOT NULL,
+  `event_id` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `event_list`
+--
+
+INSERT INTO `event_list` (`event_list_id`, `event_id`, `email`) VALUES
+(1, 1, 'jaganravi242@gmail.com'),
+(2, 2, 'jaganravi242@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -194,6 +214,49 @@ CREATE TABLE `food_donation_list` (
 
 INSERT INTO `food_donation_list` (`donation_id`, `food_donation_id`, `email`) VALUES
 (19, 1, 'jaganravi242@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventory_donation`
+--
+
+CREATE TABLE `inventory_donation` (
+  `donation_id` int(11) NOT NULL,
+  `donation_name` varchar(30) NOT NULL,
+  `item_name` varchar(30) NOT NULL,
+  `item_required` int(11) NOT NULL,
+  `item_collected` int(11) NOT NULL,
+  `discription` text NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `donation_status` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `inventory_donation`
+--
+
+INSERT INTO `inventory_donation` (`donation_id`, `donation_name`, `item_name`, `item_required`, `item_collected`, `discription`, `email`, `donation_status`) VALUES
+(1, 'qwewweq', 'qewqewew', 11, 1, 'aswqadsads', 'public@mail.com', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventory_donation_list`
+--
+
+CREATE TABLE `inventory_donation_list` (
+  `id` int(11) NOT NULL,
+  `donation_id` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `inventory_donation_list`
+--
+
+INSERT INTO `inventory_donation_list` (`id`, `donation_id`, `email`) VALUES
+(1, 1, 'public@mail.com');
 
 -- --------------------------------------------------------
 
@@ -378,6 +441,12 @@ ALTER TABLE `events`
   ADD PRIMARY KEY (`event_id`);
 
 --
+-- Indexes for table `event_list`
+--
+ALTER TABLE `event_list`
+  ADD PRIMARY KEY (`event_list_id`);
+
+--
 -- Indexes for table `food_donation`
 --
 ALTER TABLE `food_donation`
@@ -388,6 +457,18 @@ ALTER TABLE `food_donation`
 --
 ALTER TABLE `food_donation_list`
   ADD PRIMARY KEY (`donation_id`);
+
+--
+-- Indexes for table `inventory_donation`
+--
+ALTER TABLE `inventory_donation`
+  ADD PRIMARY KEY (`donation_id`);
+
+--
+-- Indexes for table `inventory_donation_list`
+--
+ALTER TABLE `inventory_donation_list`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `login`
@@ -466,6 +547,12 @@ ALTER TABLE `events`
   MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `event_list`
+--
+ALTER TABLE `event_list`
+  MODIFY `event_list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `food_donation`
 --
 ALTER TABLE `food_donation`
@@ -476,6 +563,18 @@ ALTER TABLE `food_donation`
 --
 ALTER TABLE `food_donation_list`
   MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `inventory_donation`
+--
+ALTER TABLE `inventory_donation`
+  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `inventory_donation_list`
+--
+ALTER TABLE `inventory_donation_list`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `money_donation`

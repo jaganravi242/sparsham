@@ -29,6 +29,7 @@
                   <li><a href="blooddonationreq.php"><i class="fa fa-angle-right"></i>Blood</a></li>
                   <li><a href="fooddonationreq.php"><i class="fa fa-angle-right"></i>Food</a></li>
                   <li><a href="moneydonationreq.php"><i class="fa fa-angle-right"></i>Money</a></li>
+                  <li><a href="inventorydonationreq.php"><i class="fa fa-angle-right"></i>Inventory</a></li>
 
 
                   <!-- <li><a href="service.php"><i class="fa fa-angle-right"></i> Service Providers</a></li> -->
@@ -44,6 +45,7 @@
                   <li><a href="blooddonationlist.php"><i class="fa fa-angle-right"></i>Blood</a></li>
                   <li><a href="fooddonationlist.php"><i class="fa fa-angle-right"></i>Food</a></li>
                   <li><a href="moneydonationlist.php"><i class="fa fa-angle-right"></i>Money</a></li>
+                  <li><a href="inventorydonationlist.php"><i class="fa fa-angle-right"></i>Inventory</a></li>
 
 
                   <!-- <li><a href="service.php"><i class="fa fa-angle-right"></i> Service Providers</a></li> -->

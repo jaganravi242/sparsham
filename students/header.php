@@ -64,10 +64,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<ul>
 							<li><a href="index.php"><span class="glyphicon glyphicon-home"></span>Home</a></li>
 							<li><a href="about.html"><span class="glyphicon glyphicon-info-sign"></span>About</a></li>
-							
-							<li>
-								<a href="../logout.php"><span class="glyphicon glyphicon-arrow-right"></span>Logout</a>
-							</li>							
+							<li><a href="events.php"><span class="glyphicon glyphicon-info-sign"></span>Event</a></li>
+							<li><a href="acceptedevents.php"><span class="glyphicon glyphicon-info-sign"></span>My Event</a></li>
+							<li><a href="../logout.php"><span class="glyphicon glyphicon-arrow-right"></span>Logout</a></li>							
 							<!-- <li><a href="typo.html"><span class="glyphicon glyphicon-certificate"></span>Short Codes</a></li> -->	
 							<li><a href="gallery.html"><span class="glyphicon glyphicon-picture"></span>Gallery</a></li>								
 							<li><a href="contact.html"><span class="glyphicon glyphicon-envelope"></span>Contact</a></li>

@@ -23,51 +23,38 @@ include("dbconn.php");
 </script>
 <div class="container">
 	<table id="table_id" class="display">
-		<h1 class="text-center">Food Donations</h1>
+		<h1 class="text-center">Money Donations</h1>
     <thead>
         <tr>
            
-        <th>Food Donation Id</th>
+           <th>Name</th>
+           <th>Contact</th>
+
       <th>Donation Name</th>
-      <th>Units Required</th>
-      <th>Units Collected</th>
+      <th>Amount Collected</th>
       <th>Description</th>
-      <th>Status</th>
-      <th>List</th>
+           <th>Status</th>
       
         </tr>
     </thead>
     <tbody>
          <?php
             $email=$_SESSION["email"];
-            $sql="select * from food_donation where email='$email' order by donation_date desc";
+            $sql="select * from money_donation a,registration b where a.email=b.email and a.money_donation_id in(select money_donation_id from money_donation_list WHERE email='$email')order by a.donation_date desc";
             $res=mysqli_query($conn,$sql);
             if(mysqli_num_rows($res)>0){
                 while($r=mysqli_fetch_assoc($res)){
                   ?>
                   <tr>
-                  <td><?php echo $r['food_donation_id']?></td>
+                  <td><?php echo $r['name']?></td>
+                  <td><?php echo $r['email']?><br>
+                  <?php echo $r['phone']?><br>  
+                  </td>
                   <td><?php echo $r['donation_name']?></td>
-                  <td><?php echo $r['no_of_packets']?></td>
-                  <td><?php echo $r['no_of_donations']?></td>
+                  <td><?php echo$r['collected_amount']?></td>
                   <td><?php echo $r['description']?></td>
                   <td>
-                    <div id="<?php echo $r['food_donation_id']?>">
-                        <?php
-                if($r['food_donation_status']==0)
-                    echo "Request not accepted";
-                else if($r['food_donation_status']==1)
-                    echo "Request accepted";
-                else if($r['food_donation_status']==2)
-                    echo "Request rejected";
-                else if($r['food_donation_status']==3)
-                    echo "Request completed";
-
-            ?>
-        </div></td>
-                  <td>
-                    <a href="fooddonationlistview.php?food_donation_id=<?php echo $r['food_donation_id']?>">
-                      <button class="btn btn-primary">View List</button></a>
+                      Accepted
                   </td>
               </tr>
               <?php
@@ -81,4 +68,21 @@ include("dbconn.php");
 </tbody>
 </table>
 </div>
-
+<script type="text/javascript">
+      function updatestatus(id){
+    console.log(id)
+    $.ajax({
+        url:"moneydonationstatus.php",
+        method:"POST",
+        data:{
+            money_donation_id:id
+        },
+        success:function(data){
+            location.reload();
+            console.log(data)
+            $('#'+id).html(data);
+        }
+    })
+    location.reload();
+  }
+</script>

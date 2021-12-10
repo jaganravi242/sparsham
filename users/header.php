@@ -119,6 +119,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<a href="blooddonationlist.php">Blood Donations</a>
 							<a href="fooddonationlist.php">Food Donations</a>
 							<a href="moneydonationlist.php">Money Donations</a>
+							<a href="inventorydonationlist.php">Inventory Donations</a>
 							</div>
 							</div>
 							<div class="clearfix"> </div>

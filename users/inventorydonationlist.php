@@ -23,12 +23,13 @@ include("dbconn.php");
 </script>
 <div class="container">
 	<table id="table_id" class="display">
-		<h1 class="text-center">Food Donations</h1>
+		<h1 class="text-center">Inventory Donations</h1>
     <thead>
         <tr>
            
-        <th>Food Donation Id</th>
+        <th>Donation Id</th>
       <th>Donation Name</th>
+      <th>Item Name</th>
       <th>Units Required</th>
       <th>Units Collected</th>
       <th>Description</th>
@@ -40,33 +41,34 @@ include("dbconn.php");
     <tbody>
          <?php
             $email=$_SESSION["email"];
-            $sql="select * from food_donation where email='$email' order by donation_date desc";
+            $sql="select * from inventory_donation where email='$email'";
             $res=mysqli_query($conn,$sql);
             if(mysqli_num_rows($res)>0){
                 while($r=mysqli_fetch_assoc($res)){
                   ?>
                   <tr>
-                  <td><?php echo $r['food_donation_id']?></td>
+                  <td><?php echo $r['donation_id']?></td>
                   <td><?php echo $r['donation_name']?></td>
-                  <td><?php echo $r['no_of_packets']?></td>
-                  <td><?php echo $r['no_of_donations']?></td>
-                  <td><?php echo $r['description']?></td>
+                  <td><?php echo $r['item_name']?></td>
+                  <td><?php echo $r['item_required']?></td>
+                  <td><?php echo $r['item_collected']?></td>
+                  <td><?php echo $r['discription']?></td>
                   <td>
-                    <div id="<?php echo $r['food_donation_id']?>">
+                    <div id="<?php echo $r['donation_id']?>">
                         <?php
-                if($r['food_donation_status']==0)
+                if($r['donation_status']==0)
                     echo "Request not accepted";
-                else if($r['food_donation_status']==1)
+                else if($r['donation_status']==1)
                     echo "Request accepted";
-                else if($r['food_donation_status']==2)
+                else if($r['donation_status']==2)
                     echo "Request rejected";
-                else if($r['food_donation_status']==3)
+                else if($r['donation_status']==3)
                     echo "Request completed";
 
             ?>
         </div></td>
                   <td>
-                    <a href="fooddonationlistview.php?food_donation_id=<?php echo $r['food_donation_id']?>">
+                    <a href="inventorydonationlistview.php?donation_id=<?php echo $r['donation_id']?>">
                       <button class="btn btn-primary">View List</button></a>
                   </td>
               </tr>
